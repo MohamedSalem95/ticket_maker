@@ -1,0 +1,33 @@
+<tr class="bg-white p-2 br-10 mb-2">
+    <td class="fw-bold">
+        <%= link_to ticket.title, ticket %>
+    </td>
+
+    <td>
+    
+        <% if ticket.status == 0 %>
+        <span class="badge bg-info"> 
+            مفتوحه لم يتم العمل عليها بعد من قبل الدعم الفني
+            </span>
+        <% end %>
+
+        <% if ticket.status == 1 %>
+            <span class="badge bg-success">
+                جاري العمل علي حل المشكله
+            </span>
+        <% end %>
+
+        <% if ticket.status == 2 %>
+            <span class="badge bg-danger"> 
+                مغلقه تم الحل
+            </span>
+        <% end %>
+    
+    </td>
+
+    <% if ticket.status == 1 and current_user == ticket.handler %>
+        <td>
+            <%= link_to 'تعديل', edit_ticket_path(ticket), class: 'fw-bold' %>
+        </td>
+    <% end %>
+</tr>

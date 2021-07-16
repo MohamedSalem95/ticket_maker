@@ -1,0 +1,45 @@
+<div class="row">
+    <div class="col">
+
+        <div class="bg-light p-3 br-10">
+            
+            <%= form_with model: @ticket, local: true do |f| %>
+        
+                <div class="form-group">
+                    <%= f.label :title, 'وصف مختصر للمشكله', class: 'fw-bold mb-1' %>
+                    <%= f.text_field :title, disabled: true, class: 'form-control mb-2 fw-bold', placeholder: 'وصف مختصر ..' %>
+                </div>
+
+                <div class="form-group">
+                    <%= f.label :category_code, 'القسم القائم بحل المشكله', class: 'fw-bold mb-1' %>
+                    <%= f.select :category_code, @category_list , { include_blank: '__ اختر القسم __' }, { class: 'form-control mb-2', disabled: true } %>
+                </div>
+
+                <div class="form-group">
+                    <%= f.label :status, 'الحاله', class: 'fw-bold mb-1' %>
+                    <%= f.select :status, [['جاري العمل علي حلها', 1], ['مغلقه (تم الحل)', 2]], {}, { class: 'form-select fw-bold mb-2', disabled: @ticket.status == 2 ? true : false } %>
+                </div>
+
+                <div class="form-group">
+                    <%= f.label :public_notes, 'ملحوظات القائم بحل المشكله', class: 'fw-bold mb-1' %>
+                    <%= f.text_area :public_notes, rows: 5, class: 'form-control mb-2', placeholder: 'ملحوظات', disabled: @ticket.status == 2 ? true : false %>
+                    <span class="text-muted fw-bold"> 
+                        هذه الملحوظات سوف تظهر لصاحب الشكوي عند استعلامه عنها.
+                    </span>
+                </div>
+
+                <div class="form-group">
+                    <%= f.label :private_notes, 'ملحوظات سريه للقائم بحل المشكله', class: 'fw-bold mb-1' %>
+                    <%= f.text_area :private_notes, rows: 5, class: 'form-control mb-2', placeholder: 'ملحوظات', disabled: @ticket.status == 2 ? true : false %>
+                    <span class="text-success fw-bold"> 
+                        هذه الملحوظات سريه خاصه بك فقط لن تظهر لصاحب الشكوي, هذه مرجع لك انت فقط.
+                    </span>
+                </div>
+
+                <%= f.submit 'حفظ', class: 'btn btn-success' %>
+
+            <% end %>
+        </div>
+
+    </div>
+</div>

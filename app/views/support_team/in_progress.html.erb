@@ -1,0 +1,64 @@
+<div class="row">
+    <div class="col">
+    
+        <h5 class="text-muted fw-bold">
+            مرحبا بك يا <span class="text-primary text-capitalize"> <%= current_user.first_name %> </span>
+            في لوحه التحكم الخاصه بك.
+
+            
+        </h5>
+
+        <p>
+            <%= link_to support_team_path, class: 'btn btn-outline-success' do %>
+                جميع الشكاوي المفتوحه
+            <% end %>
+
+            <%= button_tag class: 'btn btn-success fw-bold' do %>
+                الشكاوي الجاري العمل عليها
+            <% end %>
+
+            <%= link_to support_team_closed_path, class: 'btn btn-outline-success' do %>
+                الشكاوي المغلقه
+            <% end %>
+        </p>
+
+        <div class="bg-light br-10 p-2">
+            <% if @tickets.any? %>
+                <p class="text-muted fw-bold">
+                    يوجد عدد 
+                    <%= @count %>
+                    شكاوي
+                    تقوم بالعمل عليها.
+                <p>
+
+                 <table class="table table-sm table-bordered table-hover">
+
+                    <thead>
+                        <tr>
+                            <th> وصف مختصر </th>
+                            <th> الحاله </th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+
+                    
+                <%  @tickets.each do |ticket| %>
+
+                    <%= render ticket %>
+                    
+                <% end %>
+                    
+                    </tbody>
+
+                </table>
+                <%= paginate @tickets %>
+            <% else %>
+
+                <p class="text-muted fw-bold"> لا يوجد شكاوي جاري العمل عليها الان. </p>
+
+            <% end %>
+        </div>
+
+    </div>
+</div>

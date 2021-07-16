@@ -1,0 +1,63 @@
+<div class="row">
+    <div class="col">
+        <nav style="--bs-breadcrumb-divider: '';" aria-label="breadcrumb" dir="rtl">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><%= link_to 'الادمن', admin_team_path %></li>
+                <span class="text-muted mx-1"> / </span> 
+                <li class="breadcrumb-item active fw-bold" aria-current="page"> اداره الادارات و الادوار </li>
+            </ol>
+        </nav>
+        
+
+        <%= link_to departments_path, class: 'btn btn-outline-success' do %>
+            الادارات
+        <% end %>
+
+        <%= button_tag class: 'btn btn-success fw-bold' do %>
+            الادوار
+        <% end %>
+
+        <div class="bg-light p-2 br-10 mt-2">
+            <%= link_to new_role_path, class: 'btn btn-outline-primary mb-1' do %>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+                </svg>
+                اضافه دور جديد
+            <% end %>
+
+            <% if @roles.any? %>
+                <p class="fw-bold">
+                    يوجد عدد
+                    <%= Role.count %>
+                    دور حتي الان.
+                </p>
+
+                <table class="table table-bordered table-sm table-hover">
+                    <thead>
+                        <th> الدور </th>
+                        <th> الكود </th>
+                    </thead>
+
+                    <tbody>
+                        <% @roles.each do |role| %>
+                            <tr>
+                                <td class="fw-bold"> <%= role.name %> </td>
+                                <td class="fw-bold"> <%= role.code %> </td>
+                                <td> <%= link_to 'تعديل', edit_role_path(role), class: 'fw-bold' %> </td>
+                                <td> <%= link_to 'حذف', confirm_role_delete_path(role), class: 'fw-bold text-danger' %> </td>
+
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+
+            <% else %>
+                
+                <p class="fw-bold text-muted">
+                    لا يوجد ادوار بعد.
+                </p>
+
+            <% end %>
+        </div>
+    </div>
+</div>

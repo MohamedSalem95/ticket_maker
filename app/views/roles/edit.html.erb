@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col">
+        <h5 class="fw-bold"> تعديل دور <span class="text-danger"> <%= @role.name %> </span>. </h5>
+
+        <div class="bg-light p-2 br-10"> 
+            <%= form_with model: @role, local: true do |f| %>
+                <div class="form-group">
+                    <%= f.label :name, 'الاسم', class: 'fw-bold mb-1' %>
+                    <%= f.text_field :name, class: "form-control #{'is-invalid' if @role.errors[:name].any?} mb-2", placeholder: 'الاسم ..' %>
+                    <% @role.errors[:name].each do |error| %>
+                        <Strong class="text-danger"> <%= error %> </Strong>
+                    <% end %>
+                </div>
+
+
+                <div class="form-group">
+                    <%= f.label :code, 'الكود', class: 'fw-bold mb-1' %>
+                    <%= f.text_field :code, class: "form-control #{'is-invalid' if @role.errors[:code].any?} mb-2", placeholder: 'الكود ..' %>
+                    <% @role.errors[:code].each do |error| %>
+                        <Strong class="text-danger"> <%= error %> </Strong>
+                    <% end %>
+                </div>
+
+                <%= f.submit 'تعديل', class: 'btn btn-success' %>
+            <% end %>
+        </div>
+    </div>
+</div>

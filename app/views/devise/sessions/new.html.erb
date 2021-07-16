@@ -1,0 +1,45 @@
+<div class="row">
+
+  <div class="col-sm-6">
+
+    <div class="bg-light p-3 br-10">
+      <h4 class="fw-bold">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
+          <path d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1z"/>
+        </svg>
+        تسجيل دخول
+      </h4>
+
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="form-group">
+          <%= f.label :email, 'الايميل', class: 'fw-bold mb-1' %><br />
+          <%= f.email_field :email, class: 'form-control mb-2', autofocus: true, autocomplete: "email", placeholder: 'الايميل ..' %>
+        </div>
+
+        <div class="field">
+          <%= f.label :password, 'كلمه السر', class: 'fw-bold mb-1' %><br />
+          <%= f.password_field :password, class: 'form-control mb-2', autocomplete: "current-password", placeholder: 'كلمه السر ..' %>
+        </div>
+
+        <% if devise_mapping.rememberable? %>
+          <div class="field">
+            <%= f.check_box :remember_me %>
+            <%= f.label :remember_me, 'تذكرني', class: 'mb-1 fw-bold' %>
+          </div>
+        <% end %>
+
+        <div class="actions">
+          <%= f.submit "تسجيل دخول", class: 'btn btn-success' %>
+        </div>
+      <% end %>
+
+<%= render "devise/shared/links" %>
+    </div>
+
+  </div>
+
+  <div class="col-sm-6">
+    <%= image_pack_tag 'media/images/login.jpg', class: 'img-fluid rounded' %>
+  </div>
+
+</div>

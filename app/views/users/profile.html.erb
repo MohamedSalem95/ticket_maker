@@ -1,0 +1,78 @@
+<div class="row">
+
+
+    <div class="col-sm-3">
+        <% if @user.avatar.present? %>
+            <%= image_tag @user.avatar.variant(resize_to_fill: [270, 270]), class: 'rounded img-fluid mb-3' %>
+        <% else %>
+            <%= image_tag identicon_for(@user.email), class: 'rounded img-fluid mb-3' %>
+        <% end %>
+
+        
+
+        <% if @user == current_user %>
+            <div class="d-grid gap-2">
+                <%= link_to user_new_image_path, class: 'btn btn-outline-primary fw-bold' do %>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-camera-fill" viewBox="0 0 16 16">
+                        <path d="M10.5 8.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                        <path d="M2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2zm.5 2a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm9 2.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0z"/>
+                    </svg>
+
+                    تغيير صوره الملف الشخصي
+                <% end %>
+            </div>
+        <% end %>
+    </div>
+
+    <div class="col">
+        <div class="br-10 bg-light p-2 mb-2">
+
+            <h5 class="fw-bold">
+                <%= "#{@user.first_name} #{@user.last_name}" %>
+
+                <span class="text-muted">
+                    (<%= @user.job %>)
+                </span>
+
+                <% if @user.has_role? 0 %>
+                    <span class="badge bg-danger"> ادمن  💪  </span>
+                <% end %>
+
+                <% if @user.has_role? 2 %>
+                    <span class="badge bg-success"> دعم فني  👨🏼‍🔧  </span>
+                <% end %>
+
+                <% if @user.has_role? 3 %>
+                    <span class="badge bg-success"> مطور برامج 👨🏼‍💻 </span>
+                <% end %>
+
+               
+
+                 
+
+               
+            </h5>
+
+            <p class="text-muted fw-bold mb-1">
+                <%= @user.bio %>
+            </p>
+
+            <p class="text-muted fw-bold mt-0">
+                <%= @user.get_dep %>
+            </p>
+
+        </div>
+
+        <% if @user == current_user %>
+            <div class="bg-light br-10 p-2 fw-bold">
+                <p>
+                    لديك عدد <%= current_user.owned_tickets.count %>
+                    شكاوي.
+
+                    <%= link_to 'عرض الجميع', tickets_path %>
+                </p>
+        </div>
+        <% end %>
+    </div>
+
+</div>

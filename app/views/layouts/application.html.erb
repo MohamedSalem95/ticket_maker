@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html dir="rtl">
+  <head>
+    <title>TicketMaker</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body class="pb-5">
+
+    
+
+    <%= render partial: 'layouts/header' %>
+    
+    
+
+    <div class="container">
+
+      <% if notice %>
+        <div class="alert alert-success alert-dismissible fade show my-1" role="alert">
+          <b> <%= notice %> </b>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      <% end %>
+
+      <% if alert %>
+        <div class="alert alert-danger alert-dismissible fade show my-1" role="alert">
+          <b> <%= alert %> </b>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      <% end %>
+
+      <%= yield %>
+    </div>
+
+    <%# image_pack_tag 'media/images/shawn.png', class:'rounded', width: 80, style: 'position: fixed; bottom: 60px; right: 25px' %>
+    <%= render partial: 'layouts/footer' %>
+  </body>
+</html>

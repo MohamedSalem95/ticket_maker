@@ -1,0 +1,161 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-arab mb-2 sticky-top px-0 border-bottom">
+  <div class="container px-0">
+    
+    <%= link_to root_path, class: 'navbar-brand fw-bold fs-5 cairo' do %>
+
+        <%= image_pack_tag 'media/images/arab.png', width: 35 %>
+         نظام حل المشاكل
+    <% end %>
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mb-2 mb-lg-0">
+        <% if user_signed_in? %>
+
+          <li class="nav-item">
+            <%= link_to root_path, class: 'nav-link active fw-bold' do %>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
+                <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5z"/>
+              </svg>
+              الرئيسيه 
+            <% end %>
+          </li>
+
+          <li class="nav-item">
+            <%= link_to new_ticket_path, class: 'nav-link active fw-bold' do %>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+              </svg>
+                انشاء شكوي
+            <% end %>
+          </li>
+
+          
+
+          
+
+        <% end %>
+       
+      </ul>
+
+       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        
+        <% if user_signed_in? %>
+
+          <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle fw-bold text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <% if current_user.avatar.present? %>
+                <%= image_tag current_user.avatar.variant(resize_to_fill: [32, 32]), class: 'rounded-circle border-2-white', style: 'padding: 1px;' %>
+            <% else %>
+                <%= image_tag identicon_for(current_user.email), width: 32, class: 'rounded-circle border-2-white', style: 'padding: 1px;' %>
+            <% end %>
+            <%= "#{current_user.first_name} #{current_user.last_name}" %> 
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <% if policy(:support_team).index? %>
+              <li class="bg-light">
+                  
+                <%= link_to support_team_path, class: 'dropdown-item fw-bold text-end text-success' do %>
+
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-grid-1x2-fill" viewBox="0 0 16 16">
+                    <path d="M0 1a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V1zm9 0a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1V1zm0 9a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1v-5z"/>
+                  </svg>
+                  لوحه التحكم
+                <% end %>
+                
+              </li>
+            <% end %>
+
+            <% if policy(:admin_team).index? %>
+              <li class="bg-light">
+                  
+                <%= link_to admin_team_path, class: 'dropdown-item fw-bold text-end text-success' do %>
+
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-shield-fill-check" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8 0c-.69 0-1.843.265-2.928.56-1.11.3-2.229.655-2.887.87a1.54 1.54 0 0 0-1.044 1.262c-.596 4.477.787 7.795 2.465 9.99a11.777 11.777 0 0 0 2.517 2.453c.386.273.744.482 1.048.625.28.132.581.24.829.24s.548-.108.829-.24a7.159 7.159 0 0 0 1.048-.625 11.775 11.775 0 0 0 2.517-2.453c1.678-2.195 3.061-5.513 2.465-9.99a1.541 1.541 0 0 0-1.044-1.263 62.467 62.467 0 0 0-2.887-.87C9.843.266 8.69 0 8 0zm2.146 5.146a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647z"/>
+                  </svg>
+                  لوحه الادمن
+                <% end %>
+                
+              </li>
+            <% end %>
+
+            
+
+
+            <li>
+               
+                <%= link_to user_profile_path(current_user), class: 'dropdown-item fw-bold text-end' do %>
+
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                  <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                  </svg>
+                  الملف الشخصي
+                <% end %>
+                
+             </li>
+
+             <li>
+               
+                <%= link_to edit_user_registration_path, class: 'dropdown-item fw-bold text-end' do %>
+
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear-fill" viewBox="0 0 16 16">
+                    <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
+                  </svg>
+                  اعدادات الحساب
+                <% end %>
+                
+             </li>
+
+
+     
+              
+
+              <li><hr class="dropdown-divider"></li>
+
+
+            <li>
+                <a class="" href="#">
+                
+                    <%= link_to destroy_user_session_path, class: 'dropdown-item fw-bold text-danger text-end', method: :delete do %>
+
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-square-fill" viewBox="0 0 16 16">
+                      <path d="M0 14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v12zm4.5-6.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5a.5.5 0 0 1 0-1z"/>
+                      </svg>
+                      تسجل خروج
+
+                    <% end %>
+                
+                </a>
+            </li>
+
+        <% else %>
+
+          <li class="nav-item">
+            <%= link_to 'انشاء حساب', new_user_registration_path, class: 'btn btn-success fw-bold ml-2' %>
+          </li>
+
+          &nbsp;
+
+          <li class="nav-item">
+            <%= link_to 'تسجيل دخول', new_user_session_path, class: 'btn btn-primary fw-bold' %>
+          </li>
+
+
+        <% end %>
+
+
+           
+          </ul>
+        </li>
+      </ul>
+
+      <!--<form class="d-flex  me-auto">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form> -->
+    </div>
+  </div>
+</nav>

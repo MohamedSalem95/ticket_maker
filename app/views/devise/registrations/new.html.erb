@@ -1,0 +1,130 @@
+<div class="row bg-light p-3 br-10">
+
+    <div class="col-sm-6">
+
+    
+        <h4 class="fw-bold">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+            <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+            <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+          </svg>
+          انشاء حساب جديد
+        </h4>
+
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= render "devise/shared/error_messages", resource: resource %>
+
+          <div class="form-group">
+            <%= f.label :email, 'الايميل (اجباري)', class: 'fw-bold mb-1' %><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control mb-2 #{'is-invalid' if resource.errors[:email].any?}", placeholder: 'الايميل ..' %>
+            <% resource.errors[:email].each do |error| %>
+              <Strong class="text-danger"> <%= error %> </Strong>
+            <% end %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :department_code, 'الاداره (اجباري)', class: 'fw-bold mb-1' %><br />
+            <%= f.select :department_code, Department.all.map { |d| [d.name, d.code] } , { include_blank: '__اختر الاداره__' } , { class:"form-select mb-2 #{'is-invalid' if resource.errors[:department_code].any?}" } %>
+            <% resource.errors[:department_code].each do |error| %>
+                <Strong class="text-danger"> <%= error %> </Strong>
+            <% end %>
+          </div>
+
+         
+
+          <div class="form-group">
+            <%= f.label :first_name, 'الاسم الاول (اجباري)', class: 'fw-bold mb-1' %><br />
+            <%= f.text_field :first_name, class:"form-control mb-2 #{'is-invalid' if resource.errors[:first_name].any?}", placeholder: 'الاسم الاول ..' %>
+            <% resource.errors[:first_name].each do |error| %>
+                <Strong class="text-danger"> <%= error %> </Strong>
+            <% end %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :last_name, 'اسم العائله (اجباري)', class: 'fw-bold mb-1' %><br />
+            <%= f.text_field :last_name, class:"form-control mb-2 #{'is-invalid' if resource.errors[:last_name].any?}", placeholder: ' اسم العائله ..' %>
+            <% resource.errors[:last_name].each do |error| %>
+                <Strong class="text-danger"> <%= error %> </Strong>
+            <% end %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :const_no, ' الرقم الثابت (اجباري)', class: 'fw-bold mb-1' %><br />
+            <%= f.text_field :const_no, class:"form-control mb-2 #{'is-invalid' if resource.errors[:const_no].any?}", placeholder: ' الرقم الثابت  ..' %>
+            <% resource.errors[:const_no].each do |error| %>
+                <Strong class="text-danger"> <%= error %> </Strong>
+            <% end %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :phone_no, ' رقم الهاتف (اجباري)', class: 'fw-bold mb-1' %><br />
+            <%= f.text_field :phone_no, class: "form-control mb-2 #{'is-invalid' if resource.errors[:phone_no].any?}", placeholder: ' رقم الهاتف  ..' %>
+            <% resource.errors[:phone_no].each do |error| %>
+                <Strong class="text-danger"> <%= error %> </Strong>
+            <% end %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :job, ' المسمي الوظيفي (اجباري)', class: 'fw-bold mb-1' %><br />
+            <%= f.text_field :job, class:"form-control mb-2 #{'is-invalid' if resource.errors[:job].any?}", placeholder: ' المسمي الوظيفي  ..' %>
+            <% resource.errors[:job].each do |error| %>
+                <Strong class="text-danger"> <%= error %> </Strong>
+            <% end %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :bio, 'السيره الذاتيه', class: 'fw-bold mb-1' %><br />
+            <%= f.text_area :bio, rows: 5, class:'form-control mb-2', placeholder: '  السيره الذاتيه  ..' %>
+          </div>
+
+           <div class="field">
+            <%= f.label :password, 'كلمه السر (يجب الا تقل عن 6 حروف) (اجباري)', class: 'mb-1 fw-bold' %>
+            <%= f.password_field :password, autocomplete: "new-password", class: "form-control #{'is-invalid' if resource.errors[:password].any?}", placeholder: 'كلمه السر ..' %>
+            <% resource.errors[:password].each do |error| %>
+                <Strong class="text-danger"> <%= error %> </Strong>
+            <% end %>
+          </div>
+
+          <div class="field">
+            <%= f.label :password_confirmation, 'تاكيد كلمه السر (اجباري)', class: 'fw-bold mb-1' %><br />
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control mb-2 #{'is-invalid' if resource.errors[:password_confirmation].any?}", placeholder: 'تاكيد كلمه السر ..' %>
+            <% resource.errors[:password_confirmation].each do |error| %>
+                <Strong class="text-danger"> <%= error %> </Strong>
+            <% end %>
+          </div>
+
+
+
+
+
+
+          <div class="actions">
+            <%= f.submit "انشاء الحساب", class: 'btn btn-success fw-bold' %>
+          </div>
+        <% end %>
+
+        <%= render "devise/shared/links" %>
+
+      
+    
+    </div>
+
+    <div class="col-sm-6">
+      <div class="p-2 bg-white mt-5 br-10">
+        <%= image_pack_tag 'media/images/register.png', class: 'img-fluid rounded' %>
+         <p class="lead fw-bold text-muted">
+          نحن سعيدون جدا بانضمامك لبرنامج حل المشاكل الفنيه في البرامج و الاجهزه,
+          بانضمامك للبرنامج فانت تساعد علي حل المشاكل الفنيه اللتي تواجه اطقم عمل المقاولون العرب بشكل منظم
+          و موثق.
+        </p>
+
+        <p class="text-start fw-bold text-success">
+          <u>
+            محمد سالم
+          </ul>
+        </p>
+      </div>
+    </div>
+
+ 
+</div>

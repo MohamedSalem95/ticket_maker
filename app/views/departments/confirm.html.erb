@@ -1,0 +1,13 @@
+<div class="row">
+    <div class="col">
+        <p class="lead fw-bold">
+            هل انت متاكد من انك تريد حذف 
+            <u class="text-primary"> <%= @dep.name %> </u>
+
+            ؟
+        </p>
+
+        <%= link_to 'نعم قم بالحذف', department_path(@dep), method: :delete, class: 'btn btn-outline-danger' %>
+        <%= link_to 'الغاء', departments_path, class: 'btn btn-primary mr-2' %>
+    </div>
+</div>

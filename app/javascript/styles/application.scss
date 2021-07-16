@@ -1,0 +1,59 @@
+@import '~bootstrap/scss/bootstrap.scss';
+@import './variables.scss';
+@import '~trix/dist/trix';
+
+@font-face {
+    font-family: 'Dubai';
+    src: url('../fonts/Dubai-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Amiri';
+    src: url('../fonts/Amiri-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Cairo';
+    src: url('../fonts/Cairo-Regular.ttf');
+}
+
+html, body {
+    font-family: 'Dubai';
+}
+
+.bg-arab {
+    background-color: $primary_color;
+}
+
+.border-2-white {
+    border: 2px solid #ffffff;
+}
+
+.br-10 {
+    border-radius: 10px;
+}
+
+.br-20 {
+    border-radius: 20px;
+}
+
+.bg-light-green {
+    background-color: #bfecbf;
+}
+
+trix-editor {
+    height: 350px;
+    overflow-y: auto;
+}
+
+.trix-invalid {
+    border: 1px solid #ff0000;
+}
+
+.amiri {
+    font-family: 'Amiri';
+}
+
+.cairo {
+    font-family: 'Cairo';
+}

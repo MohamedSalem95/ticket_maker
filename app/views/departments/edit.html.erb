@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="col">
+        <h5 class="fw-bold"> تعديل بيانات الاداره. </h5>
+
+        <div class="bg-light p-2 br-10">
+            <%= form_with model: @dep, local: true do |f| %>
+                <div class="form-group">
+                    <%= f.label :name, 'الاسم (اجباري)', class: 'fw-bold mb-1' %>
+                    <%= f.text_field :name, class: "form-control mb-2 #{ 'is-invalid' if @dep.errors[:name].any? }", placeholder: 'اسم الاداره..' %>
+
+                    <% @dep.errors[:name].each do |error| %>
+                        <Strong class="text-danger"> <%= error %> </Strong>
+                    <% end %>
+
+                </div>
+
+                <div class="form-group">
+                    <%= f.label :code, 'الكود(اجباري)', class: 'fw-bold mb-1' %>
+                    <%= f.text_field :code, class: "form-control mb-2 #{ 'is-invalid' if @dep.errors[:code].any? }", placeholder: 'كود الاداره..' %>
+
+                    <% @dep.errors[:code].each do |error| %>
+                        <Strong class="text-danger"> <%= error %> </Strong>
+                    <% end %>
+                </div>
+
+                <%= f.submit 'تعديل', class: 'btn btn-success' %>
+            <% end %>
+        </div>
+    </div>
+</div>

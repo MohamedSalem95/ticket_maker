@@ -1,0 +1,2 @@
+module AdminTeamHelper
+end

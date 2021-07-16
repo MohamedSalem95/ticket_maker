@@ -1,0 +1,102 @@
+<div class="row">
+  <div class="col">
+
+    <div class="bg-light p-3 br-10">
+
+      <h4 class="fw-bold">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
+    <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
+  </svg>
+  تعديل بيانات الحساب
+</h4>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="form-group">
+    <%= f.label :email, 'الايميل ..', class: 'fw-bold mb-1' %><br />
+    <%= f.email_field :email, autofocus: true, readonly: true, autocomplete: "email", class: 'form-control mb-2' %>
+  </div>
+
+  <div class="form-group">
+            <%= f.label :department, 'الاداره (اجباري)', class: 'fw-bold mb-1' %><br />
+            <%= f.select :department_code, Department.all.map { |d| [d.name, d.code] } , { include_blank: '__اختر الاداره__' } , { class:'form-select mb-2' } %>
+          </div>
+
+         
+
+          <div class="form-group">
+            <%= f.label :first_name, 'الاسم الاول (اجباري)', class: 'fw-bold mb-1' %><br />
+            <%= f.text_field :first_name, class:'form-control mb-2', placeholder: 'الاسم الاول ..' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :last_name, 'اسم العائله (اجباري)', class: 'fw-bold mb-1' %><br />
+            <%= f.text_field :last_name, class:'form-control mb-2', placeholder: ' اسم العائله ..' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :const_no, ' الرقم الثابت (اجباري)', class: 'fw-bold mb-1' %><br />
+            <%= f.text_field :const_no, class:'form-control mb-2', placeholder: ' الرقم الثابت  ..' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :phone_no, ' رقم الهاتف (اجباري)', class: 'fw-bold mb-1' %><br />
+            <%= f.text_field :phone_no, class:'form-control mb-2', placeholder: ' رقم الهاتف  ..' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :job, ' المسمي الوظيفي (اجباري)', class: 'fw-bold mb-1' %><br />
+            <%= f.text_field :job, class:'form-control mb-2', placeholder: ' المسمي الوظيفي  ..' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :bio, 'السيره الذاتيه', class: 'fw-bold mb-1' %><br />
+            <%= f.text_area :bio, rows: 5, class:'form-control mb-2', placeholder: '  السيره الذاتيه  ..' %>
+          </div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div class="bg-light-green br-10 p-2">
+    <h5> اتركها فارغه اذا كنت لا تريد تغيير كلمه السر. </h5>
+    <div class="field">
+      <%= f.label :password, 'كلمه السر الجديده ', class: 'fw-bold mb-1' %> (<b> يجب الا تقل عن 6 حروف. </b>)<br />
+      <%= f.password_field :password, autocomplete: "new-password", class: 'form-control mb-2', placeholder: 'كلمه السر الجديده ..' %>
+      <%# if @minimum_password_length %>
+        <!-- <br />
+        <em><%= @minimum_password_length %> characters minimum</em>
+      <%# end %> -->
+    </div>
+
+    <div class="field">
+      <%= f.label :password_confirmation, 'تاكيد كلمه السر', class: 'fw-bold mb-1' %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control mb-2', placeholder: 'تاكيد كلمه السر ..' %>
+    </div>
+
+    
+
+  </div>
+
+  <div class="field">
+      <%= f.label :current_password, 'كلمه السر الحاليه', class: 'fw-bold' %> (<b class="text-danger"> يجب ادخال كلمه السر الحاليه لكي تحفظ التغييرات </b>)<br />
+      <%= f.password_field :current_password, class: 'form-control mb-2', placeholder: 'كلمه السر الحاليه ..' %>
+    </div>
+
+  <div class="actions">
+    <%= f.submit "حفظ", class: 'btn btn-success' %>
+  </div>
+<% end %>
+
+<h3>Cancel my account</h3>
+
+<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+
+<%= link_to "Back", :back %>
+
+
+    </div>
+
+  </div>
+</div>

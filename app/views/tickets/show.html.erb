@@ -1,0 +1,143 @@
+<div class="row">
+    <div class="col">
+
+        <div class="bg-light p-3 br-10">
+            <h5 class="fw-bold"> <u> <%= @ticket.title %> </u> </h5>
+            
+            <p class="fw-bold mb-1"> صاحب الشكوي </p>
+            <div class="bg-white p-2 br-10 mb-2">
+                
+                <% if @ticket.owner.avatar.present? %>
+                    <%= image_tag @ticket.owner.avatar.variant(resize_to_fill: [50, 50]), class: 'rounded-circle' %>
+                <% else %>
+                    <%= image_tag identicon_for(@ticket.owner.email), width: 50, class: 'rounded-circle' %>
+                <% end %>
+                <%= link_to user_profile_path(@ticket.owner) do %>
+                    <span class="fw-bold">
+                        <%= "#{@ticket.owner.first_name} #{@ticket.owner.last_name}" %>
+                    </span>
+                <% end %>
+                &nbsp;
+                <span class="fw-bold">
+                    بتاريخ
+                    <%= @ticket.created_at.strftime('%d-%m-%Y الساعه %I:%M') %>
+                </span>
+
+            </div>
+
+            <p>
+                <b> القسم المصعد له المشكله <u class="text-muted"> <%= @ticket.category.name %> </u></b> 
+                
+            </p>
+
+            <p>
+                <span class="fw-bold"> الحاله </span>
+                <% if @ticket.status == 0 %>
+                    <span class="badge bg-info"> 
+                        مفتوحه لم يتم العمل عليها بعد من قبل الدعم الفني
+                     </span>
+                <% end %>
+
+                <% if @ticket.status == 1 %>
+                    <span class="badge bg-success">
+                        جاري العمل علي حل المشكله
+                    </span>
+                <% end %>
+
+                <% if @ticket.status == 2 %>
+                    <span class="badge bg-danger"> 
+                        مغلقه تم الحل
+                    </span>
+                <% end %>
+            </p>
+
+            <p>
+                <span class="fw-bold">
+                    المسؤل عن حل المشكله
+                </span>
+                
+                <% if @ticket.handler.present? %>
+
+                    <div class="bg-white p-2 br-10">
+                    <% if @ticket.handler.avatar.present? %>
+                        <%= image_tag @ticket.handler.avatar.variant(resize_to_fill: [50, 50]), class: 'rounded-circle' %>
+                    <% else %>
+                        <%= image_tag identicon_for(@ticket.handler.email), width: 50, class: 'rounded-circle' %>
+                    <% end %>
+                    <%= link_to user_profile_path(@ticket.handler) do %>
+                    <span class="fw-bold">
+                        <%= "#{@ticket.handler.first_name} #{@ticket.handler.last_name}" %>
+                    </span>
+                <% end %>
+
+            </div>
+
+                <% else %>
+                    <br>
+                    <span class="fw-bold text-danger"> لم يتم سحب التذكره بعد من قبل اي عضو ف فريق الدعم الفني. </span>
+
+                <% end %>
+            </p>
+
+            <% if @ticket.handler.present? %>
+                <div>
+                    <span class="fw-bold"> ملحوظات </span>
+                    <% if @ticket.public_notes.present? %>
+                        <p class="p-2 bg-white fw-bold">
+                            <%= @ticket.public_notes %>
+                        </p>
+                    <% else %>
+                        <br>
+                        <p class="fw-bold bg-white p-2"> لا يوجد ملحوظات </p>
+                    <% end %>
+                </div>
+
+                <% if current_user == @ticket.handler %>
+                    <div>
+                        <span class="fw-bold"> ملحوظات سريه </span>
+                        <% if @ticket.private_notes.present? %>
+                            <p class="p-2 bg-white fw-bold">
+                                <%= @ticket.private_notes %>
+                            </p>
+                        <% else %>
+                            <br>
+                            <p class="fw-bold bg-white p-2"> لا يوجد ملحوظات </p>
+                        <% end %>
+                    </div>
+                <% end %>
+            <% end %>
+
+            <%# ticket desc only shows to it and devs when it has no handler %>
+            <% if !@ticket.handler.present? and policy(@ticket).look? %>
+                <div class="bg-white p-2 br-10">
+                    <h5 class="fw-bold"> وصف مفصل للمشكله </h5>
+                    <%= @ticket.description %>
+                
+                </div>
+            <%# only shows to handler when it has handler %>
+            <% elsif @ticket.handler.present? and current_user == @ticket.handler %>
+                <div class="bg-white p-2 br-10">
+                    <h5 class="fw-bold"> وصف مفصل للمشكله </h5>
+                    <%= @ticket.description %>
+                
+                </div>
+
+            <% end %>
+
+            <% if policy(@ticket).withdraw? and @ticket.status == 0 %>
+                <%= link_to withdraw_ticket_path(@ticket), class: 'btn btn-lg btn-success mt-2' do %>
+                    سحب التذكره للعمل عليها
+                <% end %>
+            <% end %>
+
+            <% if @ticket.status == 1 and policy(@ticket).edit? %>
+                <%= link_to edit_ticket_path(@ticket), class: 'btn btn-outline-danger' do %>
+                    تعديل
+                <% end %>
+            <% end %>
+        </div>
+
+        
+
+    </div>
+</div>

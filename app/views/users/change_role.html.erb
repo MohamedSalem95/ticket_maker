@@ -1,0 +1,51 @@
+<div class="row">
+    <div class="col">
+        <h5 class="fw-bold text-muted"> تغيير دور المستخدم </h5>
+
+        <div class="bg-light p-2 br-10">
+            <div class="p-2 bg-white br-10">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <% if @user.avatar.present? %>
+                            <%= image_tag @user.avatar.variant(resize_to_fill: [270, 270]), class: 'br-10 img-fluid' %>
+                        <% else %>
+                            <%= image_tag identicon_for(@user.email), class: 'br-10 img-fluid' %>
+                        <% end %>
+                    </div>
+
+                    <div class="col">
+                        <h5 class="fw-bold"> 
+                            <%= link_to "#{@user.first_name} #{@user.last_name}", user_profile_path(@user) %>
+                        </h5>
+                        <% if @user.has_role? 0 %>
+                            <span class="badge bg-danger"> ادمن  💪  </span>
+                        <% end %>
+
+                        <% if @user.has_role? 1 %>
+                            <span class="badge bg-primary"> مستخدم 🤓  </span>
+                        <% end %>
+
+                        <% if @user.has_role? 2 %>
+                            <span class="badge bg-success"> دعم فني  👨🏼‍🔧  </span>
+                        <% end %>
+
+                        <% if @user.has_role? 3 %>
+                            <span class="badge bg-success"> مطور برامج 👨🏼‍💻 </span>
+                        <% end %>  
+                    </div>
+                </div>
+
+                
+            </div>
+
+            <%= form_for :model, url: user_change_role_update_path(@user), method: :put do |f| %>
+                <div class="form-group">
+                    <%= f.label :role_code, 'تعيين المستخدم ك', class: 'mb-1 fw-bold' %>
+                    <%= f.select :role_code, @roles, { selected: @user.roles.first.code }, { class: 'form-select fw-bold mb-2' } %>
+
+                    <%= f.submit 'حفظ', class: 'btn btn-success' %>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>

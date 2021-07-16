@@ -1,0 +1,111 @@
+<div class="row">
+    <div class="col">
+    <nav style="--bs-breadcrumb-divider: '';" aria-label="breadcrumb" dir="rtl">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><%= link_to 'الادمن', admin_team_path %></li>
+            <span class="text-muted mx-1"> / </span> 
+            <li class="breadcrumb-item active fw-bold" aria-current="page"> اداره المستخدمين </li>
+        </ol>
+    </nav>
+    
+    <h5 class="fw-bold text-muted"> اداره المستخدمين </h5>
+        <%= link_to users_path, class: 'btn btn-outline-success' do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+                <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                <path fill-rule="evenodd" d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z"/>
+                <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
+            </svg>
+
+            جميع المستخدمين
+        <% end %>
+
+         <%= button_tag it_path, class: 'btn btn-success fw-bold' do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hammer" viewBox="0 0 16 16">
+                <path d="M9.972 2.508a.5.5 0 0 0-.16-.556l-.178-.129a5.009 5.009 0 0 0-2.076-.783C6.215.862 4.504 1.229 2.84 3.133H1.786a.5.5 0 0 0-.354.147L.146 4.567a.5.5 0 0 0 0 .706l2.571 2.579a.5.5 0 0 0 .708 0l1.286-1.29a.5.5 0 0 0 .146-.353V5.57l8.387 8.873A.5.5 0 0 0 14 14.5l1.5-1.5a.5.5 0 0 0 .017-.689l-9.129-8.63c.747-.456 1.772-.839 3.112-.839a.5.5 0 0 0 .472-.334z"/>
+            </svg>
+            الدعم الفني
+        <% end %>
+
+        <%= link_to dev_path, class: 'btn btn-outline-success' do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cpu-fill" viewBox="0 0 16 16">
+                <path d="M6.5 6a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3z"/>
+                <path d="M5.5.5a.5.5 0 0 0-1 0V2A2.5 2.5 0 0 0 2 4.5H.5a.5.5 0 0 0 0 1H2v1H.5a.5.5 0 0 0 0 1H2v1H.5a.5.5 0 0 0 0 1H2v1H.5a.5.5 0 0 0 0 1H2A2.5 2.5 0 0 0 4.5 14v1.5a.5.5 0 0 0 1 0V14h1v1.5a.5.5 0 0 0 1 0V14h1v1.5a.5.5 0 0 0 1 0V14h1v1.5a.5.5 0 0 0 1 0V14a2.5 2.5 0 0 0 2.5-2.5h1.5a.5.5 0 0 0 0-1H14v-1h1.5a.5.5 0 0 0 0-1H14v-1h1.5a.5.5 0 0 0 0-1H14v-1h1.5a.5.5 0 0 0 0-1H14A2.5 2.5 0 0 0 11.5 2V.5a.5.5 0 0 0-1 0V2h-1V.5a.5.5 0 0 0-1 0V2h-1V.5a.5.5 0 0 0-1 0V2h-1V.5zm1 4.5h3A1.5 1.5 0 0 1 11 6.5v3A1.5 1.5 0 0 1 9.5 11h-3A1.5 1.5 0 0 1 5 9.5v-3A1.5 1.5 0 0 1 6.5 5z"/>
+            </svg>
+
+            مطورين البرامج
+        <% end %>
+
+        <%= link_to admin_path, class: 'btn btn-outline-success' do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-shield-fill-check" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 0c-.69 0-1.843.265-2.928.56-1.11.3-2.229.655-2.887.87a1.54 1.54 0 0 0-1.044 1.262c-.596 4.477.787 7.795 2.465 9.99a11.777 11.777 0 0 0 2.517 2.453c.386.273.744.482 1.048.625.28.132.581.24.829.24s.548-.108.829-.24a7.159 7.159 0 0 0 1.048-.625 11.775 11.775 0 0 0 2.517-2.453c1.678-2.195 3.061-5.513 2.465-9.99a1.541 1.541 0 0 0-1.044-1.263 62.467 62.467 0 0 0-2.887-.87C9.843.266 8.69 0 8 0zm2.146 5.146a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647z"/>
+            </svg>
+            الادمن
+        <% end %>
+
+        <div class="bg-light br-10 p-2 mt-2">
+            <% if @users.any? %>
+                <p class="fw-bold text-muted">
+                    يوجد عدد
+                    <%= @users.count %>
+                    دعم فني
+                    حتي الان.
+                </p>
+                
+                <table class="table table-bordered table-sm table-hover">
+                    <thead>
+                        <th> الاسم </th>
+                        <th> الحاله </th>
+                    </thead>
+
+                    <tbody>
+                        <% @users.each do |user| %>
+                            <tr class="bg-white">
+                                <td>
+                                     <% if user.avatar.present? %>
+                                        <%= image_tag user.avatar.variant(resize_to_fill: [20, 20]), class: 'rounded-circle' %>
+                                    <% else %>
+                                        <%= image_tag identicon_for(user.email), width: 20, class: 'rounded-circle' %>
+                                    <% end %>
+                                    <%= link_to "#{user.first_name} #{user.last_name}", user_profile_path(user), class: 'fw-bold' %>
+                                </td>
+
+                                <td>
+                                    <% if user.has_role? 0 %>
+                                        <span class="badge bg-danger"> ادمن  💪  </span>
+                                    <% end %>
+
+                                     <% if user.has_role? 1 %>
+                                        <span class="badge bg-primary"> مستخدم 🤓  </span>
+                                    <% end %>
+
+                                    <% if user.has_role? 2 %>
+                                        <span class="badge bg-success"> دعم فني  👨🏼‍🔧  </span>
+                                    <% end %>
+
+                                    <% if user.has_role? 3 %>
+                                        <span class="badge bg-success"> مطور برامج 👨🏼‍💻 </span>
+                                    <% end %>  
+                                </td>
+                                <td>
+                                    <%= link_to user_change_role_path(user), class: 'fw-bold' do %>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
+                                            <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
+                                        </svg>
+                                        تعديل الدور     
+                                    <% end %>
+                                </td>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+                <%= paginate @users %>
+
+
+            <% else %>
+                <p class="fw-bold text-muted">
+                    لا يوجد مستخدمين دعم فني حاليا.
+                </p>
+            <% end %>
+        </div>
+    </div>
+</div>

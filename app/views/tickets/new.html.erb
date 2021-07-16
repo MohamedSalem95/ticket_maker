@@ -1,0 +1,54 @@
+<div class="row">
+    <div class="col">
+
+        <div class="bg-light p-3 br-10">
+            <div class="alert alert-success fw-bold" role="alert">
+                برجاء العلم انه لا يمكنك فتح شكوي جديده و هناك شكوي جاري العمل علي حلها.
+                <br>
+                يجب اغلاق اي شكاوي جاري العمل علي حلها اولا.
+            </div>
+            <%= form_with model: @ticket, local: true do |f| %>
+        
+                <div class="form-group">
+                    <%= f.label :title, 'وصف مختصر للمشكله (اجباري)', class: 'fw-bold mb-1' %>
+                    <%= f.text_field :title, class: "form-control mb-2 #{'is-invalid' if @ticket.errors[:title].any?}", placeholder: 'وصف مختصر ..' %>
+                    <% @ticket.errors[:title].each do |error| %>
+                        <div>
+                            <Strong class="text-danger"> <%= error %> </Strong>
+                        </div>
+                    <% end %>
+                </div>
+
+                <div class="form-group">
+                    <%= f.label :category_code, 'اختر القسم الذي سوف تصعد له الشكوي (اجباري)', class: 'fw-bold mb-1' %>
+                    <%= f.select :category_code, @category_list , { include_blank: '__ اختر القسم __' }, { class: "form-select mb-2 #{'is-invalid' if @ticket.errors[:category_code].any?}" } %>
+                
+                    <% @ticket.errors[:category_code].each do |error| %>
+                        <div>
+                            <Strong class="text-danger"> <%= error %> </Strong>
+                        </div>
+                    <% end %>
+                </div>
+
+                <div class="form-group">
+                    <%= f.label :description, 'وصف مفصل للمشكله(اجباري)', class: 'fw-bold mb-1' %>
+                    <%= f.rich_text_area :description, class: "mb-2 #{'trix-invalid' if @ticket.errors[:description].any?}" %>
+                    <span class="fw-bold text-muted">
+                        وصف مفصل للمشكله يمكنك ادراج صور او قوائم.
+                    </span>
+                    <% @ticket.errors[:description].each do |error| %>
+                        <div class="invaild-feedback">
+                            <Strong class="text-danger"> <%= error %> </Strong>
+                        </div>
+                    <% end %>
+                </div>
+
+                
+
+                <%= f.submit 'انشاء', class: 'btn btn-success' %>
+
+            <% end %>
+        </div>
+
+    </div>
+</div>

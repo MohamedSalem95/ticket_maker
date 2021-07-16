@@ -1,0 +1,17 @@
+<div class="row">
+
+    <div class="col">
+        <h5 class="fw-bold">
+            تحديث صوره الملف الشخصي.
+        </h5>
+        <div class="p-2 bg-light br-10">
+            <%= form_for :image, url: user_update_image_path, method: :patch do |f| %>
+                <div class="form-group">
+                    <%= f.label :avatar, 'اختر صوره.', class: 'fw-bold mb-1' %>
+                    <%= f.file_field :avatar, class: 'form-control mb-2' %>
+                </div>
+                <%= f.submit 'حفظ', class: 'btn btn-success' %>
+            <% end %>
+        </div>
+    </div>
+</div>
